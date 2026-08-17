@@ -872,6 +872,22 @@ img {
   .gallery-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
 
+/* Ensure contact info stacks above the form on small screens */
+@media (max-width: 720px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .contact-grid > div,
+  .contact-grid > form {
+    width: 100%;
+  }
+  .contact-grid > div { order: 0; }
+  .contact-grid > form { order: 1; }
+  .contact-grid .contact-list { margin-top: 1rem; }
+  .contact-form { padding: 0; }
+}
+
 /* Small utility improvements */
 .sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 

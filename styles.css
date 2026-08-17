@@ -820,6 +820,62 @@ img {
   box-shadow: var(--shadow);
 }
 
+/* Responsive improvements for mobile and tablet */
+@media (max-width: 900px) {
+  :root { font-size: 15px; }
+  .hero { min-height: 52vh; }
+  .brand-logo img { width: 64px; height: 64px; }
+  .logo-section { gap: 0.5rem; }
+  .container { width: calc(100% - 2rem); }
+  .hero-overlay { padding: 1.25rem; }
+  .hero-overlay h1 { font-size: 1.6rem; line-height: 1.2; }
+  .hero-overlay p { font-size: 0.95rem; }
+  .main-nav { display: none; }
+  .nav-toggle { display: block; }
+  .why-choose-content { grid-template-columns: 1fr; }
+  .why-choose { padding: 2.5rem 0; }
+}
+
+@media (max-width: 600px) {
+  :root { font-size: 14px; }
+  body { line-height: 1.5; }
+  .hero { min-height: 46vh; }
+  .hero-overlay h1 { font-size: 1.4rem; }
+  .hero-overlay p { font-size: 0.9rem; }
+  .brand-logo img { width: 56px; height: 56px; }
+  .logo { font-size: 1.05rem; }
+  .container { width: calc(100% - 1.25rem); }
+  .why-choose .section-title { font-size: 1.6rem; }
+  .win-item img { height: 160px; }
+
+  /* Form and contact responsiveness */
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.8rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 0.6rem;
+  }
+
+  .contact-form, .form-wrapper {
+    padding: 0 0.5rem;
+  }
+
+  /* Increase tappable area for buttons */
+  button, .btn {
+    padding: 0.9rem 1.1rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+  }
+
+  /* Make gallery cards stack nicely */
+  .gallery-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* Small utility improvements */
+.sr-only { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+
 /* Testimonials Slider */
 .testimonials {
   padding: 4rem 0;

@@ -1118,8 +1118,8 @@ function App() {
 
     try {
       console.log('Submitting form with data:', formData);
-      
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const API_BASE = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

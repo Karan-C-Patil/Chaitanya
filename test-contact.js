@@ -13,7 +13,8 @@ async function testContactForm() {
   try {
     console.log('Testing contact form submission...');
     
-    const response = await fetch('http://localhost:5000/api/contact', {
+    const API_BASE = process.env.API_BASE || 'http://localhost:5000';
+    const response = await fetch(`${API_BASE}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -66,7 +66,30 @@ export default async function handler(req, res) {
     if (!process.env.SENDGRID_API_KEY) {
       console.warn('SENDGRID_API_KEY not set; skipping email send');
     } else {
-      await sgMail.send(msg);
+        // Send with retries for rate limits / transient errors
+        const sendWithRetry = async (message, maxAttempts = 3) => {
+          let attempt = 0;
+          while (attempt < maxAttempts) {
+            try {
+              await sgMail.send(message);
+              return;
+            } catch (e) {
+              attempt++;
+              const status = e?.code || e?.response?.statusCode || e?.statusCode || e?.status;
+              const isRateLimit = status === 429;
+              const isServerError = status >= 500;
+              if (attempt >= maxAttempts || (!isRateLimit && !isServerError)) {
+                // not retryable or exhausted
+                throw e;
+              }
+              const delay = Math.pow(2, attempt) * 250; // exponential backoff: 500, 1000, ...
+              console.warn(`SendGrid send failed (attempt ${attempt}), retrying in ${delay}ms`, e?.message || e);
+              await new Promise((r) => setTimeout(r, delay));
+            }
+          }
+        };
+
+        await sendWithRetry(msg, 3);
     }
 
     return res.status(200).json({ success: true, message: 'Form submitted successfully' });

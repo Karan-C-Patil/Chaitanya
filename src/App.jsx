@@ -1735,23 +1735,8 @@ function App() {
 
         <section className="contact" id="contact">
           <div className="container contact-grid">
-            <div>
-              <span className="section-label">{t('contactLabel')}</span>
-              <h2>{t('contactTitle')}</h2>
-              <p>{t('contactText')}</p>
-              <ul className="contact-list">
-                <li>
-                  <strong>{t('address')}</strong> Naganur / Mudalgi, Tq. Mudalgi, Belagavi, Karnataka - 591312
-                </li>
-                <li>
-                  <strong>{t('email')}</strong> chaitnyaschool97@gmail.com
-                </li>
-                <li>
-                  <strong>{t('phone')}</strong> +91 9880515726 (Kannada medium) / +91 8123984759 (English medium) / +91 9964166679 (ITI)
-                </li>
-              </ul>
-            </div>
             <form className="contact-form" onSubmit={handleFormSubmit}>
+              <span className="section-label">{t('contactLabel')}</span>
               <label>
                 <span>{t('formInquiryType')}</span>
                 <select name="inquiryType" value={formData.inquiryType} onChange={handleInputChange} required>
